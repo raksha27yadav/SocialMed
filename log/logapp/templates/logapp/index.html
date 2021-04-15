@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load crispy_forms_tags %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>What you learn today?</title>
+    <style>
+        
+        h1{
+          
+            text-align: center;
+            font-size: 600%;
+            font-family: cursive;
+            font-weight: bold;
+
+        }
+        h2,h3{
+           
+            text-align: center;
+            font-size: 300%;
+            font-family: cursive;
+            font-weight: bold;
+
+        }
+       
+
+        
+        #marg{
+            padding:17% 0% 17% 0%;
+            margin:0% 0% 0% 0%;
+            background-image: linear-gradient(to bottom right, #cf1a11, #fcca03);
+
+        }
+        h3>a{
+            text-decoration:none;
+            color: white;
+        }
+        #posts{
+            background-image: linear-gradient(to bottom right, #91e7f2, white); 
+            padding: 6% 0% 12% 2%;
+            margin:0% 0% 0% 0%;
+            font-family: cursive;
+            font-weight: bold;
+            
+        }
+        .anc{
+            text-decoration:none;
+            color:grey;
+        }
+        .hello{
+            padding: 0% 0% 0% 0%;
+            margin:0% 6% 0% 6%;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+    </br>
+
+        <div class="container-fluid">
+            {% if  user.is_authenticated%}
+            <a class="navbar-brand">Welcome, {{user.username}}</a>
+            {% else %}
+            <a class="navbar-brand"></a>
+            {% endif %}
+
+            </br>
+            {% if user.is_authenticated %}
+               <a href="{% url 'logout'%}" class="navbar-brand">Logout</a>
+            {% else %}
+                
+                <!-- Button trigger modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                <a href="" id="login" style="text-decoration:none; color: white; font-size: 130%;"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  Login
+                </a>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Please Login here !! :)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          {% for i in messages  %}
+          <h4><b>{{i}}</b></h4>
+            
+          {% endfor %}
+        </div>
+      <form action="{%url 'login'%}" method="post">{% csrf_token%}
+      <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="exampleInputusername" aria-describedby="emailHelp" name="username">
+        </div>
+      
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+      
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+              
+
+                <a href="#" id="signing" style="text-decoration:none; color: white; font-size: 130%;"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Signup
+                </a>
+                  <section id=""></section>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Signup page</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{%url 'signup'%}" method="post">{%csrf_token%}
+                                <div>
+                                  {% for i in messages  %}
+                                  <h4><b>{{i}}</b></h4>
+                                    
+                                  {% endfor %}
+                                </div>
+                                  
+                                  <div class="mb-3">
+                                      <label for="username" class="form-label">Username</label>
+                                      <input type="text" class="form-control" id="exampleInputusername" aria-describedby="emailHelp" name="username" required>
+                                    </div>
+                                  <div class="mb-3">
+                                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="exampleInputPassword1" name="password1" required>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                                      <input type="password" class="form-control" id="exampleInputPassword2" name="password2" required>
+                                    </div>
+                                    
+                                    
+
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form> 
+                      </div>
+                    </div>
+                  </div>
+
+
+                </section>
+
+
+                {% endif %}
+
+
+
+
+
+              
+
+          </div>
+
+
+
+      </nav>
+
+
+
+      
+    <div id="marg">
+    <h1>Let's Grow Together</h1>
+    <h2>Share what you learnt today or anything exciting :)</h2>
+    <h3><a href="#posts">
+        Post <i style="color:white" class="fas fa-user-edit"></i></h3>
+    </a>
+    
+
+</div>
+<section id="posts">
+    {% if  user.is_authenticated%}
+        <section id="posts">
+           <form action="#posts" enctype="multipart/form-data" method="post" >{%csrf_token%}
+             {{form.text|as_crispy_field}}
+             {{form.image|as_crispy_field}}
+           </br>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+              {% else %}
+              <h5 style="text-align:center; font-weight: bold; ">To post please 
+                  <a class="anc"href="{%url 'login'%}">Login</a>
+                  or
+                  <a class="anc"href="{% url 'signup'%}">Signup</a>
+              </h5>
+          {%endif%}
+            </br>
+        </br>
+    </br>
+</br>
+</br>
+
+          {% for i in eachpost %}
+              
+
+              <figure class="text-center">
+                <blockquote class="blockquote">
+                  <span id="autotext">{{i.text}}</span>
+                  
+                  {% if i.name == request.user.username %}
+                <span><a href="{%url 'update' i.id %}">
+                    <i onload="autofill()" class="fas fa-edit"></i>
+                </a>&nbsp;
+                <span><a href="{%url 'delete' i.id %}"><i  class="fas fa-trash-alt"></i></span>
+            </a>
+                {% endif %}
+                </blockquote>
+                {% if i.image %}
+                <div class="text-center">
+                    <img style="width:400px; height:auto"src="/media/{{i.image}}" class="rounded" alt="...">
+                  </div></br>
+                
+                {% endif %}
+
+                
+                <figcaption class="blockquote-footer">
+                  Posted by <cite title="Source Title" id="autoname"><a href="{% url 'profile' i.id%}">{{i.name}} </a> </cite>
+                </figcaption>
+                {% if user.is_authenticated  %}
+                  
+                
+                <form action="{{i.id}}/preference/1/" method="post">{% csrf_token %}
+                <button onclick="clck()" id="clckd" type="submit" class="btn btn-outline-danger">Like</button>
+                {{i.likes}}
+              </form>
+              <form action="/{{i.id}}/preference/2/" method="post">{% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary">Dislike</button>{{i.dislikes}}
+              </form>
+              {% endif %}
+              </figure>
+              
+              {% endfor %}
+              </div>
+              
+              
+              
+
+        </section>
+    
+    
+    </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+    
+
+<script>
+  $(window).on('load', function() {
+        $('#myModal').modal('show');
+    });
+        
+    
+</script>
+</body>
+
+</html>
